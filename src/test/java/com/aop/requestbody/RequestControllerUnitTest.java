@@ -53,7 +53,6 @@ public class RequestControllerUnitTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody));
 
-
         perform.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().string(responseBody));
