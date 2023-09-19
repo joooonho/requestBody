@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,14 +46,17 @@ public class RequestControllerUnitTest {
 
     @Test
     public void controllerTest() throws Exception {
-        RequestDto requestDto = new RequestDto("joonho", 29);
+        // given
+        RequestDto requestDto = new RequestDto("tom", 15);
         String requestBody = objectMapper.writeValueAsString(requestDto);
-        String responseBody = objectMapper.writeValueAsString(requestBody);
+        String responseBody = objectMapper.writeValueAsString(requestDto);
 
-        ResultActions perform = mockMvc.perform(get(PATH + "/used")
+        // when
+        ResultActions perform = mockMvc.perform(put(PATH + "/used")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody));
 
+        // then
         perform.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().string(responseBody));
