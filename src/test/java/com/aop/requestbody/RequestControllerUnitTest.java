@@ -62,4 +62,3 @@ public class RequestControllerUnitTest {
                 .andExpect(content().string(responseBody));
     }
 }
-
