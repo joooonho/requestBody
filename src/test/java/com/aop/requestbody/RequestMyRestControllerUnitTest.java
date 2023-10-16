@@ -3,14 +3,10 @@ package com.aop.requestbody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,13 +20,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(value = MockitoExtension.class)
 @ActiveProfiles("test")
-public class RequestControllerUnitTest {
+public class RequestMyRestControllerUnitTest {
 
     private static final String PATH = "/request-body";
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
     @InjectMocks
-    private Controller controller;
+    private MyRestController myRestController;
 
     @BeforeEach
     void setUp() {
@@ -43,7 +39,7 @@ public class RequestControllerUnitTest {
     }
 
     private void setUpMockMvc() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new Controller()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new MyRestController()).build();
     }
 
     @Test
